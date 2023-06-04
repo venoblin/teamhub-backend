@@ -28,3 +28,11 @@ class User(db.Model):
         db.session.add(self)
         db.session.commit()
         return self
+    
+    @classmethod
+    def find_all(cls):
+        return User.query.all()
+    
+    @classmethod
+    def find_by_id(cls, id):
+        return db.get_or_404(cls, id, description=f'User with id: {id} not found!')
