@@ -14,3 +14,17 @@ class User(db.Model):
         self.name = name
         self.email = email
         self.password = password
+
+    def json(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "password": self.password,
+            "created_at": str(self.created_at),
+            "updated_at": str(self.updated_at)
+        }
+    
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
