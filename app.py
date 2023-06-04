@@ -2,7 +2,7 @@ from flask import Flask
 from flask_restful import Api
 from flask_migrate import Migrate
 from models.db import db
-from resources.Auth import Register, Login
+from resources.auth import Register, Login
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
