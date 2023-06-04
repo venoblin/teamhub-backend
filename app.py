@@ -3,6 +3,7 @@ from flask_restful import Api
 from flask_migrate import Migrate
 from models.db import db
 from resources.auth import Register, Login
+from resources.user import Users
 from models.user import User
 
 app = Flask(__name__)
@@ -18,6 +19,7 @@ api = Api(app)
 authRoutePrefix = '/auth'
 api.add_resource(Register, f'{authRoutePrefix}/register')
 api.add_resource(Login, f'{authRoutePrefix}/login')
+api.add_resource(Users, '/users')
 
 if __name__ == '__main__':
     app.run()
