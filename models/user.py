@@ -4,13 +4,15 @@ from datetime import datetime
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
+    username = db.Column(db.String(80), unique=True ,nullable=False)
     name = db.Column(db.String(80), nullable=False)
-    email = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
 
-    def __init__(self, name, email, password):
+    def __init__(self, username, name, email, password):
+        self.username = username
         self.name = name
         self.email = email
         self.password = password
@@ -18,7 +20,9 @@ class User(db.Model):
     def json(self):
         return {
             "id": self.id,
+            "username": self.username,
             "name": self.name,
+            "email": self.email,
             "password": self.password,
             "created_at": str(self.created_at),
             "updated_at": str(self.updated_at)
