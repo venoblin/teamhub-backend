@@ -34,16 +34,16 @@ class User(db.Model):
         return self
     
     @classmethod
-    def find_all(cls):
+    def find_all(self):
         return User.query.all()
     
     @classmethod
-    def find_by_id(cls, id):
-        return db.get_or_404(cls, id, description=f'User with id: {id} not found!')
+    def find_by_id(self, id):
+        return db.get_or_404(self, id, description=f'User with id: {id} not found!')
     
     @classmethod
-    def delete_by_id(cls, id):
-        user = cls.find_by_id(id)
+    def delete_by_id(self, id):
+        user = self.find_by_id(id)
         db.session.delete(user)
         db.session.commit()
         return f'Successfully deleted user with id: {id}'
