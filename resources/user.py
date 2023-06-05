@@ -19,3 +19,7 @@ class SingleUser(Resource):
   def get(self, id):
     data = User.find_by_id(id)
     return data.json()
+  
+  def delete(self, id):
+    data = User.delete_by_id(id)
+    return data

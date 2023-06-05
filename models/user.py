@@ -36,3 +36,10 @@ class User(db.Model):
     @classmethod
     def find_by_id(cls, id):
         return db.get_or_404(cls, id, description=f'User with id: {id} not found!')
+    
+    @classmethod
+    def delete_by_id(cls, id):
+        user = cls.find_by_id(id)
+        db.session.delete(user)
+        db.session.commit()
+        return f'Successfully deleted user with id: {id}'
