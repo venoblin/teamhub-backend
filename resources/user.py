@@ -8,12 +8,6 @@ class Users(Resource):
     data = User.find_all()
     results = [u.json() for u in data]
     return results
-  
-  def post(self):
-    data = request.get_json()
-    user = User(**data)
-    user.create()
-    return user.json(), 201
 
 class SingleUser(Resource):
   def get(self, id):

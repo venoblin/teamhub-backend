@@ -20,7 +20,7 @@ authRoutePrefix = '/auth'
 api.add_resource(Register, f'{authRoutePrefix}/register')
 api.add_resource(Login, f'{authRoutePrefix}/login')
 api.add_resource(Users, '/users')
-api.add_resource(SingleUser, '/users/<username>')
+api.add_resource(SingleUser, '/users/<int:id>')
 
 if __name__ == '__main__':
     app.run()
