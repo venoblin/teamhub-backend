@@ -18,4 +18,4 @@ class Register(Resource):
     
 class Login(Resource):
     def post(self):
-        return 'Logining', 201
+        data = request.get_json()

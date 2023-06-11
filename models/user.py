@@ -44,3 +44,9 @@ class User(db.Model):
         db.session.delete(user)
         db.session.commit()
         return f'Successfully deleted user with id: {id}'
+    
+    @classmethod
+    def find_by_email(self, email):
+        return db.get_or_404(
+            db.select(User).filter_by(email=email), 
+            description=f'User with email: {email} not found')
