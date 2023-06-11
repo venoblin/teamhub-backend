@@ -20,4 +20,19 @@ class Login(Resource):
     def post(self):
         data = request.get_json()
         user = User.find_by_email(data['email'])
-        return user.json(), 201
+        isVerified = check_password(data['password'], user.password)
+
+        if isVerified:
+            payload = {
+                "id": user.id,
+                "name": user.name,
+                "username": user.username,
+                "email": user.email
+            }
+            token = create_token(payload)
+            return {
+                "user": payload,
+                "token": token
+            }
+        
+        return {'error': 'Email or password invalid!'}, 400
