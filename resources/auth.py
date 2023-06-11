@@ -36,3 +36,9 @@ class Login(Resource):
             }
         
         return {'error': 'Email or password invalid!'}, 400
+    
+class CheckSession(Resource):
+    def post(self):
+        token = strip_token(request)
+        payload = read_token(token)
+        return payload
