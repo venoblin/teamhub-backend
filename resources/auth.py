@@ -19,3 +19,5 @@ class Register(Resource):
 class Login(Resource):
     def post(self):
         data = request.get_json()
+        user = User.find_by_email(data['email'])
+        return user.json(), 201
