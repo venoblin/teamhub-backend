@@ -16,7 +16,8 @@ class User(db.Model):
         self.name = name
         self.email = email
         self.password = password
-
+        
+    @classmethod
     def json(self):
         return {
             "id": self.id,
@@ -24,6 +25,7 @@ class User(db.Model):
             "email": self.email
         }
     
+    @classmethod
     def create(self):
         db.session.add(self)
         db.session.commit()
