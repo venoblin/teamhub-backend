@@ -23,6 +23,7 @@ api.add_resource(Login, f'{authRoutePrefix}/login')
 api.add_resource(CheckSession, f'{authRoutePrefix}/session')
 api.add_resource(Users, '/users')
 api.add_resource(SingleUser, '/users/<int:id>')
+api.add_resource(Projects, '/projects')
 
 if __name__ == '__main__':
     app.run()
