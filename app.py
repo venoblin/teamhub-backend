@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from models.db import db
 from resources.auth import Register, Login, CheckSession
 from resources.user import Users, SingleUser
+from resources.project import Projects
 from models.user import User
 
 app = Flask(__name__)
