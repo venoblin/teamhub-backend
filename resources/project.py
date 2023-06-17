@@ -1,4 +1,5 @@
 from flask_restful import Resource
+from flask import request
 from models.project import Project
 
 class Projects(Resource):
@@ -10,4 +11,10 @@ class Projects(Resource):
     
     @classmethod
     def post():
-      pass
+      data = request.get_json()
+      params = {
+        "name": data['name']
+      }
+      project = Project(**params)
+      project.create()
+      return project.json()
