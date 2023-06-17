@@ -2,8 +2,12 @@ from flask_restful import Resource
 from models.project import Project
 
 class Projects(Resource):
-    def get():
-      pass
-        
+    @classmethod
+    def get(self):
+      data = Projects.find_all()
+      results = [p.json() for p in data]
+      return results
+    
+    @classmethod
     def post():
       pass
