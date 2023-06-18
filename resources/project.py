@@ -11,7 +11,8 @@ class Projects(Resource):
   def post(self):
     data = request.get_json()
     params = {
-      "name": data['name']
+      'name': data['name'],
+      'owner_id': data['owner_id']
     }
     project = Project(**params)
     project.create()

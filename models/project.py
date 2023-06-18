@@ -10,13 +10,15 @@ class Project(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     user = db.relationship('User', back_populates='projects')
 
-    def __init__(self, name):
+    def __init__(self, name, owner_id):
         self.name = name
+        self.owner_id = owner_id
 
     def json(self):
         return {
             'id': self.id,
-            'name': self.name
+            'name': self.name,
+            'owner_id': self.owner_id
         }
     
     def create(self):
