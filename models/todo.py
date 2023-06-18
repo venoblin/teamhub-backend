@@ -10,3 +10,14 @@ class Todo(db.Model):
 
     def __init__(self, todo):
         self.todo = todo
+
+    def json(self):
+        return {
+            'id': self.id,
+            'todo': self.todo
+        }
+    
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
