@@ -30,7 +30,7 @@ class Project(db.Model):
         return self
     
     @classmethod
-    def find_all():
+    def find_all(self):
         return Project.query.all()
     
     @classmethod
