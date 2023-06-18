@@ -3,11 +3,12 @@ from flask import request
 from models.todo import Todo
 
 class Todos(Resource):
-    def get():
+    def get(self):
         data = Todo.find_all()
-        return data.json()
+        results = [t.json() for t in data]
+        return results
     
-    def post():
+    def post(self):
         data = request.get_json()
         params = {
             'todo': data['todo']
