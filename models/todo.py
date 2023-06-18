@@ -21,3 +21,7 @@ class Todo(db.Model):
         db.session.add(self)
         db.session.commit()
         return self
+    
+    @classmethod
+    def find_all():
+        return Todo.query.all()

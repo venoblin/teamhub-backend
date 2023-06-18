@@ -31,7 +31,7 @@ class User(db.Model):
         return self
     
     @classmethod
-    def find_all(self):
+    def find_all():
         return User.query.all()
     
     @classmethod
