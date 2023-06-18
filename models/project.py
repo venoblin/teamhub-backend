@@ -5,14 +5,16 @@ class Project(db.Model):
     __tablename__ = 'projects'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(80), nullable=False)
+    github_url = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     user = db.relationship('User', back_populates='projects')
 
-    def __init__(self, name, owner_id):
+    def __init__(self, name, github_url, owner_id):
         self.name = name
         self.owner_id = owner_id
+        self.github_url = github_url
 
     def json(self):
         return {
