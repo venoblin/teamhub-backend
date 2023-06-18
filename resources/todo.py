@@ -19,4 +19,5 @@ class Todos(Resource):
     
 class SingleTodo(Resource):
     def get(self, id):
-        pass
+        todo = Todo.find_by_id(id)
+        return todo.json()
