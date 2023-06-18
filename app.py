@@ -4,9 +4,7 @@ from flask_migrate import Migrate
 from models.db import db
 from resources.auth import Register, Login, CheckSession
 from resources.user import Users, SingleUser
-from resources.project import Projects
-from models.user import User
-from models.project import Project
+from resources.project import Projects, SingleProject
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -22,9 +20,12 @@ authRoutePrefix = '/auth'
 api.add_resource(Register, f'{authRoutePrefix}/register')
 api.add_resource(Login, f'{authRoutePrefix}/login')
 api.add_resource(CheckSession, f'{authRoutePrefix}/session')
+
 api.add_resource(Users, '/users')
 api.add_resource(SingleUser, '/users/<int:id>')
+
 api.add_resource(Projects, '/projects')
+api.add_resource(SingleProject, '/projects/<int:id>')
 
 if __name__ == '__main__':
     app.run()

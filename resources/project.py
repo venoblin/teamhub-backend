@@ -16,3 +16,13 @@ class Projects(Resource):
     project = Project(**params)
     project.create()
     return project.json(), 201
+  
+class SingleProject(Resource):
+  def get(self, id):
+    data = Project.find_by_id(id)
+    return data.json()
+  
+  def delete(self, id):
+    data = Project.delete_by_id(id)
+    return data
+
