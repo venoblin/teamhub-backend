@@ -20,6 +20,7 @@ class Project(db.Model):
         return {
             'id': self.id,
             'name': self.name,
+            'git_url': self.git_url,
             'owner_id': self.owner_id
         }
     
