@@ -39,7 +39,13 @@ class Project(db.Model):
     
     @classmethod
     def delete_by_id(self, id):
-        user = self.find_by_id(id)
-        db.session.delete(user)
+        project = self.find_by_id(id)
+        db.session.delete(project)
         db.session.commit()
-        return f'Successfully deleted user with id: {id}'
+        return f'Successfully deleted project with id: {id}'
+    
+    def update(self, update):
+        self.name = update['name']
+        self.git_url = update['git_url']
+        db.session.commit()
+        return self

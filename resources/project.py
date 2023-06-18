@@ -7,7 +7,7 @@ class Projects(Resource):
     data = Project.find_all()
     results = [p.json() for p in data]
     return results
-    
+  
   def post(self):
     data = request.get_json()
     params = {
@@ -27,4 +27,8 @@ class SingleProject(Resource):
   def delete(self, id):
     project = Project.delete_by_id(id)
     return project
-
+  
+  def patch(self, id):
+    data = request.get_json()
+    project = Project.find_by_id(id).update(data)
+    return project.json()
