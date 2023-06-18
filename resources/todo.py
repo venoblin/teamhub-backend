@@ -13,5 +13,10 @@ class Todos(Resource):
         params = {
             'todo': data['todo']
         }
-        todo = Todo.create(**params)
-        return todo.json()
+        todo = Todo(**params)
+        todo.create()
+        return todo.json(), 201
+    
+class SingleTodo(Resource):
+    def get(self, id):
+        pass

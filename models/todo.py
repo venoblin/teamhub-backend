@@ -25,3 +25,7 @@ class Todo(db.Model):
     @classmethod
     def find_all(self):
         return Todo.query.all()
+    
+    @classmethod
+    def find_by_id(self, id):
+        return db.get_or_404(self, id, description=f'Todo with id: {id} was not found!')
