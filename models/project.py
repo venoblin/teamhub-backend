@@ -15,8 +15,8 @@ class Project(db.Model):
 
     def json(self):
         return {
-            "id": self.id,
-            "name": self.name
+            'id': self.id,
+            'name': self.name
         }
     
     def create(self):

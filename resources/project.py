@@ -19,10 +19,10 @@ class Projects(Resource):
   
 class SingleProject(Resource):
   def get(self, id):
-    data = Project.find_by_id(id)
-    return data.json()
+    project = Project.find_by_id(id)
+    return project.json()
   
   def delete(self, id):
-    data = Project.delete_by_id(id)
-    return data
+    project = Project.delete_by_id(id)
+    return project
 

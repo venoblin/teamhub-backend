@@ -17,12 +17,12 @@ class User(db.Model):
         self.name = name
         self.email = email
         self.password = password
-        
+    
     def json(self):
         return {
-            "id": self.id,
-            "username": self.username,
-            "email": self.email
+            'id': self.id,
+            'username': self.username,
+            'email': self.email
         }
     
     def create(self):

@@ -7,10 +7,10 @@ class Register(Resource):
     def post(self):
         data = request.get_json()
         params = {
-            "username": data['username'],
-            "name": data['name'],
-            "email": data['email'],
-            "password": hash_password(data['password'])
+            'username': data['username'],
+            'name': data['name'],
+            'email': data['email'],
+            'password': hash_password(data['password'])
         }
         user = User(**params)
         user.create()
@@ -24,15 +24,15 @@ class Login(Resource):
 
         if isVerified:
             payload = {
-                "id": user.id,
-                "name": user.name,
-                "username": user.username,
-                "email": user.email
+                'id': user.id,
+                'name': user.name,
+                'username': user.username,
+                'email': user.email
             }
             token = create_token(payload)
             return {
-                "user": payload,
-                "token": token
+                'user': payload,
+                'token': token
             }
         
         return {'error': 'Email or password invalid!'}, 400
