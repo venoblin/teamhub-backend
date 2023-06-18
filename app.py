@@ -6,6 +6,7 @@ from resources.auth import Register, Login, CheckSession
 from resources.user import Users, SingleUser
 from resources.project import Projects
 from models.user import User
+from models.project import Project
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

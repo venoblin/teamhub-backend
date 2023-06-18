@@ -11,14 +11,12 @@ class Project(db.Model):
     def __init__(self, name):
         self.name = name
 
-    @classmethod
     def json(self):
         return {
             "id": self.id,
             "name": self.name
         }
     
-    @classmethod
     def create(self):
         db.session.add(self)
         db.session.commit()
