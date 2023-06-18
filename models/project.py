@@ -29,6 +29,12 @@ class Project(db.Model):
         db.session.commit()
         return self
     
+    def update(self, update):
+        self.name = update['name']
+        self.git_url = update['git_url']
+        db.session.commit()
+        return self
+    
     @classmethod
     def find_all(self):
         return Project.query.all()
@@ -43,9 +49,3 @@ class Project(db.Model):
         db.session.delete(project)
         db.session.commit()
         return f'Successfully deleted project with id: {id}'
-    
-    def update(self, update):
-        self.name = update['name']
-        self.git_url = update['git_url']
-        db.session.commit()
-        return self

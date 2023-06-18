@@ -21,3 +21,7 @@ class SingleTodo(Resource):
     def get(self, id):
         todo = Todo.find_by_id(id)
         return todo.json()
+    
+    def delete(self, id):
+        project = Todo.delete_by_id(id)
+        return project
