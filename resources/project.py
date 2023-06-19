@@ -1,5 +1,6 @@
 from flask_restful import Resource
 from flask import request
+from sqlalchemy.orm import joinedload
 from models.project import Project
 
 class Projects(Resource):
@@ -21,8 +22,9 @@ class Projects(Resource):
   
 class SingleProject(Resource):
   def get(self, id):
-    project = Project.find_by_id(id)
-    return project.json()
+    project = Project.query.options(joinedload(Project.todos)).filter_by(id=id).first()
+    todos = [p.json() for p in project.todos]
+    return {**project.json(), 'todos': todos}
   
   def delete(self, id):
     project = Project.delete_by_id(id)

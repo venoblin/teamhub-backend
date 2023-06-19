@@ -11,7 +11,8 @@ class Todos(Resource):
     def post(self):
         data = request.get_json()
         params = {
-            'todo': data['todo']
+            'todo': data['todo'],
+            'project_id': data['project_id']
         }
         todo = Todo(**params)
         todo.create()
