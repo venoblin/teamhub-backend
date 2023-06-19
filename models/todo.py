@@ -10,8 +10,9 @@ class Todo(db.Model):
     project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
     project = db.relationship('Project', back_populates='todos')
     
-    def __init__(self, todo):
+    def __init__(self, todo, project_id):
         self.todo = todo
+        self.project_id = project_id
 
     def json(self):
         return {

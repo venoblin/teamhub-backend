@@ -14,8 +14,8 @@ class Project(db.Model):
 
     def __init__(self, name, git_url, owner_id):
         self.name = name
-        self.owner_id = owner_id
         self.git_url = git_url
+        self.owner_id = owner_id
 
     def json(self):
         return {
