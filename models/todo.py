@@ -39,3 +39,10 @@ class Todo(db.Model):
         db.session.delete(todo)
         db.session.commit()
         return f'Successfully deleted todo with id: {id}'
+    
+class Bug(db.Model):
+    __tablename__ = 'bugs'
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    bug = db.Column(db.String(255), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
