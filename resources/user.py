@@ -15,5 +15,5 @@ class SingleUser(Resource):
     return {**user.json(), 'projects': projects}
   
   def delete(self, id):
-    user = User.delete_by_id(id)
-    return user
+    return User.delete_by_id(id)
+    

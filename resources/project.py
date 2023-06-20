@@ -27,9 +27,8 @@ class SingleProject(Resource):
     return {**project.json(), 'todos': todos}
   
   def delete(self, id):
-    project = Project.delete_by_id(id)
-    return project
-  
+    return Project.delete_by_id(id)
+    
   def patch(self, id):
     data = request.get_json()
     project = Project.find_by_id(id).update(data)

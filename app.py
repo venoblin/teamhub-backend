@@ -5,7 +5,7 @@ from models.db import db
 from resources.auth import Register, Login, CheckSession
 from resources.user import Users, SingleUser
 from resources.project import Projects, SingleProject
-from resources.todo import Todos, SingleTodo
+from resources.todo_bug import Todos, SingleTodo, Bugs, SingleBug
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -30,6 +30,9 @@ api.add_resource(SingleProject, '/projects/<int:id>')
 
 api.add_resource(Todos, '/todos')
 api.add_resource(SingleTodo, '/todos/<int:id>')
+
+api.add_resource(Bugs, '/bugs')
+api.add_resource(SingleBug, '/bugs/<int:id>')
 
 if __name__ == '__main__':
     app.run()

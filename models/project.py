@@ -11,6 +11,7 @@ class Project(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     user = db.relationship('User', back_populates='projects')
     todos = db.relationship('Todo', cascade='all' ,back_populates='project')
+    bugs = db.relationship('Bug', cascade='all' ,back_populates='project')
 
     def __init__(self, name, git_url, owner_id):
         self.name = name
