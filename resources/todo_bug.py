@@ -24,8 +24,7 @@ class SingleTodo(Resource):
         return todo.json()
     
     def delete(self, id):
-        project = Todo.delete_by_id(id)
-        return project
+        return Todo.delete_by_id(id)
     
 class Bugs(Resource):
     def get(self):
@@ -42,3 +41,11 @@ class Bugs(Resource):
         bug = Bug(**params)
         bug.create()
         return bug.json(), 201
+    
+class SingleBug(Resource):
+    def get(self, id):
+        bug = Bug.find_by_id(id)
+        return bug.json()
+    
+    def delete(self, id):
+        return Bug.delete_by_id(id)
