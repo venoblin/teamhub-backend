@@ -55,3 +55,8 @@ class Bug(db.Model):
             'id': self.id,
             'bug': self.bug
         }
+    
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
