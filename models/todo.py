@@ -60,3 +60,17 @@ class Bug(db.Model):
         db.session.add(self)
         db.session.commit()
         return self
+    
+    @classmethod
+    def find_all(self):
+        return Bug.query.all()
+    
+    @classmethod
+    def find_by_id(self, id):
+        return db.get_or_404(self, id, description=f'Todo with id: {id} was not found!')
+    
+    def delete_by_id(self, id):
+        bug = self.find_by_id(id)
+        db.session.delete(bug)
+        db.session.commit()
+        return f'Successfully deleted todo with id: {id}'
