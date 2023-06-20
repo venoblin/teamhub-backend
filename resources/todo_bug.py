@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flask import request
-from models.todo import Todo
+from models.todo_bug import Todo, Bug
 
 class Todos(Resource):
     def get(self):
@@ -26,3 +26,19 @@ class SingleTodo(Resource):
     def delete(self, id):
         project = Todo.delete_by_id(id)
         return project
+    
+class Bugs(Resource):
+    def get(self):
+        data = Bug.find_all()
+        results = [b.json() for b in data]
+        return results
+    
+    def post(self):
+        data = request.json()
+        params = {
+            'bug': data['bug'],
+            'project_id': data['project_id']
+        }
+        bug = Bug(**params)
+        bug.create()
+        return bug.json(), 201
