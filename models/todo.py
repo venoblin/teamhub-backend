@@ -46,3 +46,12 @@ class Bug(db.Model):
     bug = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
+
+    def __init__(self, bug):
+        self.bug = bug
+
+    def json(self):
+        return {
+            'id': self.id,
+            'bug': self.bug
+        }
