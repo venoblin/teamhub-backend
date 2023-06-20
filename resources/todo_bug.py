@@ -33,7 +33,7 @@ class Bugs(Resource):
         return results
     
     def post(self):
-        data = request.json()
+        data = request.get_json()
         params = {
             'bug': data['bug'],
             'project_id': data['project_id']

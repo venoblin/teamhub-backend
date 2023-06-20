@@ -17,7 +17,8 @@ class Todo(db.Model):
     def json(self):
         return {
             'id': self.id,
-            'todo': self.todo
+            'todo': self.todo,
+            'project_id': self.project_id
         }
     
     def create(self):
@@ -47,15 +48,17 @@ class Bug(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
     project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
-    project = db.relationship('Project', back_populates='todos')
+    project = db.relationship('Project', back_populates='bugs')
 
-    def __init__(self, bug):
+    def __init__(self, bug, project_id):
         self.bug = bug
+        self.project_id = project_id
 
     def json(self):
         return {
             'id': self.id,
-            'bug': self.bug
+            'bug': self.bug,
+            'project_id': self.project_id
         }
     
     def create(self):
