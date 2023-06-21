@@ -22,10 +22,14 @@ class Projects(Resource):
   
 class SingleProject(Resource):
   def get(self, id):
-    project = Project.query.options(subqueryload(Project.todos), subqueryload(Project.bugs)).filter_by(id=id).first()
+    project = Project.query.options(subqueryload(Project.user), subqueryload(Project.todos), subqueryload(Project.bugs)).filter_by(id=id).first()
     todos = [t.json() for t in project.todos]
     bugs = [b.json() for b in project.bugs]
-    return {**project.json(), 'todos': todos, 'bugs': bugs}
+    return {
+      **project.json(),
+      'owner': project.user.json(), 
+      'todos': todos, 
+      'bugs': bugs}
   
   def delete(self, id):
     return Project.delete_by_id(id)
