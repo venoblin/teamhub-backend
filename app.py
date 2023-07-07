@@ -12,7 +12,7 @@ app = Flask(__name__)
 DATABASE_URL = os.getenv('DATABASE_URL')
 if DATABASE_URL:
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL.replace("://", "ql://", 1)
     app.config['SQLALCHEMY_ECHO'] = False 
     app.env = 'production'
 else:
