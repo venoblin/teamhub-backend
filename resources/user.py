@@ -13,7 +13,4 @@ class SingleUser(Resource):
     user = User.query.options(joinedload(User.projects)).filter_by(id=id).first()
     projects = [p.json() for p in user.projects]
     return {**user.json(), 'projects': projects}
-  
-  def delete(self, id):
-    return User.delete_by_id(id)
     
