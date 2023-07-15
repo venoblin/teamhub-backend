@@ -26,10 +26,9 @@ migrate = Migrate(app, db)
 
 api = Api(app)
 
-authRoutePrefix = '/auth'
-api.add_resource(Register, f'{authRoutePrefix}/register')
-api.add_resource(Login, f'{authRoutePrefix}/login')
-api.add_resource(CheckSession, f'{authRoutePrefix}/session')
+api.add_resource(Register, '/register')
+api.add_resource(Login, '/login')
+api.add_resource(CheckSession, '/session')
 
 api.add_resource(Users, '/users')
 api.add_resource(SingleUser, '/users/<int:id>')
