@@ -10,6 +10,7 @@ from resources.todo_bug import Todos, SingleTodo, Bugs, SingleBug
 
 app = Flask(__name__)
 DATABASE_URL = os.getenv('DATABASE_URL')
+DEV_DATABASE_URL = os.getenv('DEV_DATABASE_URL')
 if DATABASE_URL:
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL.replace("://", "ql://", 1)
@@ -18,7 +19,7 @@ if DATABASE_URL:
 else:
     app.debug = True
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost:5432/project_manager'
+    app.config['SQLALCHEMY_DATABASE_URI'] = DEV_DATABASE_URL
     app.config['SQLALCHEMY_ECHO'] = True
 
 db.init_app(app)
