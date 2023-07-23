@@ -2,6 +2,7 @@ import os
 from flask import Flask
 from flask_restful import Api
 from flask_migrate import Migrate
+from flask_cors import CORS
 from models.db import db
 from resources.auth import Register, Login, CheckSession
 from resources.user import Users, SingleUser
@@ -9,6 +10,7 @@ from resources.project import Projects, SingleProject
 from resources.todo_bug import Todos, SingleTodo, Bugs, SingleBug
 
 app = Flask(__name__)
+CORS(app)
 DATABASE_URL = os.getenv('DATABASE_URL')
 DEV_DATABASE_URL = os.getenv('DEV_DATABASE_URL')
 if DATABASE_URL:
