@@ -4,7 +4,7 @@ from datetime import datetime
 class Todo(db.Model):
     __tablename__ = 'todos'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    todo = db.Column(db.String(255), nullable=False)
+    todo = db.Column(db.String(100), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
     project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
@@ -44,7 +44,8 @@ class Todo(db.Model):
 class Bug(db.Model):
     __tablename__ = 'bugs'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    bug = db.Column(db.String(255), nullable=False)
+    bug = db.Column(db.String(100), nullable=False)
+    bug_info = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
     project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
