@@ -13,7 +13,6 @@ class Projects(Resource):
     data = request.get_json()
     params = {
       'name': data['name'],
-      'git_url': data['git_url'],
       'owner_id': data['owner_id'],
     }
     project = Project(**params)

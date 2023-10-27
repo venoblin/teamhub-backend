@@ -13,16 +13,14 @@ class Project(db.Model):
     todos = db.relationship('Todo', cascade='all' ,back_populates='project')
     bugs = db.relationship('Bug', cascade='all' ,back_populates='project')
 
-    def __init__(self, name, git_url, owner_id):
+    def __init__(self, name, owner_id):
         self.name = name
-        self.git_url = git_url
         self.owner_id = owner_id
 
     def json(self):
         return {
             'id': self.id,
             'name': self.name,
-            'git_url': self.git_url,
             'owner_id': self.owner_id
         }
     
