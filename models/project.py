@@ -49,3 +49,7 @@ class Project(db.Model):
         db.session.delete(project)
         db.session.commit()
         return f'Successfully deleted project with id: {id}'
+    
+    @classmethod 
+    def find_from_user_by_name(self):
+        return Project.query.filter(Project.name == self.name, Project.owner_id == self.owner_id).first()

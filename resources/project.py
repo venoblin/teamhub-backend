@@ -16,8 +16,12 @@ class Projects(Resource):
       'owner_id': data['owner_id'],
     }
     project = Project(**params)
-    project.create()
-    return project.json(), 201
+
+    if not project.find_from_user_by_name():
+      project.create()
+      return project.json(), 201
+    
+    return 'Name already in use', 500
   
 class SingleProject(Resource):
   def get(self, id):
