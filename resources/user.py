@@ -12,7 +12,7 @@ class Users(Resource):
 
 class SingleUser(Resource):
   def get(self, id):
-    user = User.query.options(joinedload(User.projects).joinedload(Project.bugs)).filter_by(id=id).first()
+    user = User.query.options(subqueryload(User.projects)).filter_by(id=id).first()
     projects = [p.json() for p in user.projects]
     return {**user.json(), 'projects': projects}
     
