@@ -36,7 +36,8 @@ class SingleProject(Resource):
       **project.json(),
       'owner': project.user.json(), 
       'todos': todos, 
-      'bugs': bugs}
+      'bugs': bugs
+    }
   
   def delete(self, id):
     return Project.delete_by_id(id)
