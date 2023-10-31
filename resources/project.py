@@ -12,21 +12,20 @@ class Projects(Resource):
   def post(self):
     data = request.get_json()
 
-    if ' ' in data['name']:
-      return 'Can\'t have spaces in name'
-    
-    params = {
+    if ' ' not in data['name']:
+      params = {
       'name': data['name'],
       'owner_id': data['owner_id'],
-    }
-    project = Project(**params)
-    print(project.find_from_user_by_name())
+      }
+      project = Project(**params)
 
-    if not project.find_from_user_by_name():
-      project.create()
-      return project.json(), 201
+      if not project.find_from_user_by_name():
+        project.create()
+        return project.json(), 201
     
-    return 'Name already in use', 500
+      return 'Name already in use', 500
+    else:
+      return 'Can\'t have spaces in name'
   
 class SingleProject(Resource):
   def get(self, id):
