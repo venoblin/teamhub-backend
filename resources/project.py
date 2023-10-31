@@ -11,6 +11,10 @@ class Projects(Resource):
   
   def post(self):
     data = request.get_json()
+
+    if ' ' in data['name']:
+      return 'Can\'t have spaces in name'
+    
     params = {
       'name': data['name'],
       'owner_id': data['owner_id'],
