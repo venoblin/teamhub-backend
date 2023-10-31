@@ -16,6 +16,7 @@ class Projects(Resource):
       'owner_id': data['owner_id'],
     }
     project = Project(**params)
+    print(project.find_from_user_by_name())
 
     if not project.find_from_user_by_name():
       project.create()
