@@ -19,7 +19,7 @@ class Projects(Resource):
       }
       project = Project(**params)
 
-      if not project.find_from_user_by_name():
+      if not project.find_from_user_by_name(**params):
         project.create()
         return project.json(), 201
     
