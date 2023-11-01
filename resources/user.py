@@ -13,6 +13,13 @@ class Users(Resource):
 class SingleUser(Resource):
   def get(self, id):
     user = User.query.options(subqueryload(User.projects)).filter_by(id=id).first()
-    projects = [p.json() for p in user.projects]
+
+    def construct_project(project):
+      todos = [t.json() for t in project.todos]
+      bugs = [b.json() for b in project.bugs]
+      return {**project.json(), 'todos': todos, 'bugs': bugs}
+      
+    projects = [construct_project(p) for p in user.projects]
+
     return {**user.json(), 'projects': projects}
     
