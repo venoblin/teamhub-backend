@@ -49,3 +49,8 @@ class SingleBug(Resource):
     
     def delete(self, id):
         return Bug.delete_by_id(id)
+    
+    def patch(self, id):
+        data = request.get_json()
+        bug = Bug.find_by_id(id).update(data)
+        return bug.json()
