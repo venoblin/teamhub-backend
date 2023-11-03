@@ -1,4 +1,3 @@
-from sqlalchemy.orm import joinedload
 from sqlalchemy.orm import subqueryload
 from models.user import User
 
