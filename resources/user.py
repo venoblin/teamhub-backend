@@ -5,9 +5,7 @@ from models.user import User
 
 class Users(Resource):
   def get(self):
-    data = User.find_all()
-    results = [u.json() for u in data]
-    return results
+    pass
 
 class SingleUser(Resource):
   def get(self, id):
