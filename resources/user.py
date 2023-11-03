@@ -7,5 +7,5 @@ class Users(Resource):
 
 class SingleUser(Resource):
   def get(self, id):
-    pass
+    return get_single_user(id)
     
