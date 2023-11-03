@@ -7,7 +7,8 @@ from models.db import db
 from resources.auth import Register, Login, CheckSession
 from resources.user import Users, SingleUser
 from resources.project import Projects, SingleProject
-from resources.todo_bug import Todos, SingleTodo, Bugs, SingleBug
+from resources.todo import Todos, SingleTodo
+from resources.bug import Bugs, SingleBug
 
 app = Flask(__name__)
 CORS(app)
