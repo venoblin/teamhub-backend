@@ -2,7 +2,6 @@ from flask_restful import Resource
 from sqlalchemy.orm import joinedload
 from sqlalchemy.orm import subqueryload
 from models.user import User
-from models.project import Project
 
 class Users(Resource):
   def get(self):
