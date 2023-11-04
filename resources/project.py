@@ -2,47 +2,22 @@ from flask_restful import Resource
 from flask import request
 from sqlalchemy.orm import subqueryload
 from models.project import Project
+from middleware import verify_auth
+from controllers.project import get_all_projects, post_project, get_single_project, delete_single_project, patch_single_project
 
 class Projects(Resource):
   def get(self):
-    data = Project.find_all()
-    results = [p.json() for p in data]
-    return results
+    return verify_auth(request, get_all_projects)
   
   def post(self):
-    data = request.get_json()
-
-    if ' ' not in data['name']:
-      params = {
-      'name': data['name'],
-      'owner_id': data['owner_id'],
-      }
-      project = Project(**params)
-
-      if not project.find_from_user_by_name(**params):
-        project.create()
-        return project.json(), 201
-    
-      return 'Name already in use', 500
-    else:
-      return 'Can\'t have spaces in name'
+    return verify_auth(request, post_project)
   
 class SingleProject(Resource):
   def get(self, id):
-    project = Project.query.options(subqueryload(Project.user), subqueryload(Project.todos), subqueryload(Project.bugs)).filter_by(id=id).first()
-    todos = [t.json() for t in project.todos]
-    bugs = [b.json() for b in project.bugs]
-    return {
-      **project.json(),
-      'owner': project.user.json(), 
-      'todos': todos, 
-      'bugs': bugs
-    }
+    return verify_auth(request, lambda: get_single_project(id))
   
   def delete(self, id):
-    return Project.delete_by_id(id)
+    return verify_auth(request, lambda: delete_single_project(id))
     
   def patch(self, id):
-    data = request.get_json()
-    project = Project.find_by_id(id).update(data)
-    return project.json()
+    return verify_auth(request, lambda: patch_single_project(id))
