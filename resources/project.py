@@ -1,7 +1,5 @@
 from flask_restful import Resource
 from flask import request
-from sqlalchemy.orm import subqueryload
-from models.project import Project
 from middleware import verify_auth
 from controllers.project import get_all_projects, post_project, get_single_project, delete_single_project, patch_single_project
 
