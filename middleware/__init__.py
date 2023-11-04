@@ -15,9 +15,9 @@ def read_token(token):
         payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
         return payload
     except jwt.InvalidSignatureError:
-        return 'Signature invalid'
+        return None
     except jwt.InvalidTokenError:
-        return 'Token invalid'
+        return None
     
 def hash_password(password):
     return bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
@@ -31,3 +31,13 @@ def strip_token(req):
         return token
     except:
         return None
+    
+def verify_auth(req, controller):
+    token = strip_token(req)
+    payload = read_token(token)
+    
+    if payload:
+        return controller()
+    else:
+        return {'error': 'Invalid authorization'}
+    

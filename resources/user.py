@@ -1,11 +1,13 @@
 from flask_restful import Resource
+from flask import request
+from middleware import verify_auth
 from controllers.user import get_all_users, get_single_user
 
 class Users(Resource):
   def get(self):
-    return get_all_users()
+    return verify_auth(request, get_all_users)
 
 class SingleUser(Resource):
   def get(self, id):
-    return get_single_user(id)
+    return verify_auth(request, lambda: get_single_user(id))
     
