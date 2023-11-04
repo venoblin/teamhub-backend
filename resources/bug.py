@@ -1,32 +1,21 @@
 from flask_restful import Resource
 from flask import request
-from models.bug import Bug
+from middleware import verify_auth
+from controllers.bug import get_all_bugs, post_bug, get_single_bug, delete_single_bug, patch_single_bug
 
 class Bugs(Resource):
     def get(self):
-        data = Bug.find_all()
-        results = [b.json() for b in data]
-        return results
+        return verify_auth(request, get_all_bugs)
     
     def post(self):
-        data = request.get_json()
-        params = {
-            'bug': data['bug'],
-            'project_id': data['project_id']
-        }
-        bug = Bug(**params)
-        bug.create()
-        return bug.json(), 201
+        return verify_auth(request, post_bug)
     
 class SingleBug(Resource):
     def get(self, id):
-        bug = Bug.find_by_id(id)
-        return bug.json()
+        return verify_auth(request, lambda: get_single_bug(id))
     
     def delete(self, id):
-        return Bug.delete_by_id(id)
+        return verify_auth(request, lambda: delete_single_bug(id))
     
     def patch(self, id):
-        data = request.get_json()
-        bug = Bug.find_by_id(id).update(data)
-        return bug.json()
+        return verify_auth(request, lambda: patch_single_bug(id))
