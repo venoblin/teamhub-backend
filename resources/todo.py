@@ -1,27 +1,18 @@
 from flask_restful import Resource
 from flask import request
-from models.todo import Todo
+from middleware import verify_auth
+from controllers.todo import get_all_todos, post_todo, get_single_todo, delete_single_todo
 
 class Todos(Resource):
     def get(self):
-        data = Todo.find_all()
-        results = [t.json() for t in data]
-        return results
+        return verify_auth(request, get_all_todos)
     
     def post(self):
-        data = request.get_json()
-        params = {
-            'todo': data['todo'],
-            'project_id': data['project_id']
-        }
-        todo = Todo(**params)
-        todo.create()
-        return todo.json(), 201
+        return verify_auth(request, post_todo)
     
 class SingleTodo(Resource):
     def get(self, id):
-        todo = Todo.find_by_id(id)
-        return todo.json()
+        return verify_auth(request, lambda: get_single_todo(id))
     
     def delete(self, id):
-        return Todo.delete_by_id(id)
+        return verify_auth(request, lambda: delete_single_todo(id))
