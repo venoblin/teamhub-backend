@@ -22,3 +22,8 @@ def get_single_todo(id):
 
 def delete_single_todo(id):
   return Todo.delete_by_id(id)
+
+def patch_single_todo(id):
+  data = request.get_json()
+  todo = Todo.find_by_id(id).update(data)
+  return todo.json()

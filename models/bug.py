@@ -31,8 +31,7 @@ class Bug(db.Model):
         return self
     
     def update(self, update):
-        update_self(self, update)
-            
+        update_self(self, update) 
         db.session.commit()
         return self
 

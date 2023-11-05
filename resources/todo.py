@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import request
 from middleware import verify_auth
-from controllers.todo import get_all_todos, post_todo, get_single_todo, delete_single_todo
+from controllers.todo import get_all_todos, post_todo, get_single_todo, delete_single_todo, patch_single_todo
 
 class Todos(Resource):
     def get(self):
@@ -16,3 +16,6 @@ class SingleTodo(Resource):
     
     def delete(self, id):
         return verify_auth(request, lambda: delete_single_todo(id))
+    
+    def patch(self, id):
+        return verify_auth(request, lambda: patch_single_todo(id))

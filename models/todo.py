@@ -1,5 +1,6 @@
 from models.db import db
 from datetime import datetime
+from utils import update_self
 
 class Todo(db.Model):
     __tablename__ = 'todos'
@@ -23,6 +24,11 @@ class Todo(db.Model):
     
     def create(self):
         db.session.add(self)
+        db.session.commit()
+        return self
+    
+    def update(self, update):
+        update_self(self, update)
         db.session.commit()
         return self
     
