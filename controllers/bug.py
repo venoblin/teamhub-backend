@@ -10,6 +10,7 @@ def post_bug():
   data = request.get_json()
   params = {
     'bug': data['bug'],
+    'bug_info': data['bug_info'],
     'project_id': data['project_id']
   }
   bug = Bug(**params)

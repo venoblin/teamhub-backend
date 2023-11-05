@@ -5,20 +5,22 @@ class Bug(db.Model):
     __tablename__ = 'bugs'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     bug = db.Column(db.String(100), nullable=False)
-    bug_info = db.Column(db.String(255))
+    bug_info = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
     project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
     project = db.relationship('Project', back_populates='bugs')
 
-    def __init__(self, bug, project_id):
+    def __init__(self, bug, bug_info, project_id):
         self.bug = bug
+        self.bug_info = bug_info
         self.project_id = project_id
 
     def json(self):
         return {
             'id': self.id,
             'bug': self.bug,
+            'bug_info': self.bug_info,
             'project_id': self.project_id
         }
     
