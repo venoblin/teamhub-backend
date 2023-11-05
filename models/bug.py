@@ -29,6 +29,13 @@ class Bug(db.Model):
         db.session.commit()
         return self
     
+    def update(self, update):
+        for key, value in update.items():
+            setattr(self, key, value)
+            
+        db.session.commit()
+        return self.json()
+
     @classmethod
     def find_all(self):
         return Bug.query.all()
