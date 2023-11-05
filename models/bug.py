@@ -1,5 +1,6 @@
 from models.db import db
 from datetime import datetime
+from utils import update_self
 
 class Bug(db.Model):
     __tablename__ = 'bugs'
@@ -30,8 +31,7 @@ class Bug(db.Model):
         return self
     
     def update(self, update):
-        for key, value in update.items():
-            setattr(self, key, value)
+        update_self(self, update)
             
         db.session.commit()
         return self.json()
