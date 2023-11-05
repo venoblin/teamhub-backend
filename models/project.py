@@ -1,5 +1,6 @@
 from models.db import db
 from datetime import datetime 
+from utils import update_self
 
 class Project(db.Model):
     __tablename__ = 'projects'
@@ -30,8 +31,7 @@ class Project(db.Model):
         return self
     
     def update(self, update):
-        self.name = update['name']
-        self.git_url = update['git_url']
+        update_self(self, update)
         db.session.commit()
         return self
     
