@@ -27,4 +27,4 @@ def delete_single_bug(id):
 def patch_single_bug(id):
   data = request.get_json()
   bug = Bug.find_by_id(id).update(data)
-  return bug
+  return bug.json()

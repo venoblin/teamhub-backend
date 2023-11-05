@@ -34,7 +34,7 @@ class Bug(db.Model):
         update_self(self, update)
             
         db.session.commit()
-        return self.json()
+        return self
 
     @classmethod
     def find_all(self):
