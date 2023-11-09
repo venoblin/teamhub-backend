@@ -6,7 +6,7 @@ class Project(db.Model):
     __tablename__ = 'projects'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(80), nullable=False)
-    git_url = db.Column(db.String(255))
+    git_url = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
@@ -14,8 +14,9 @@ class Project(db.Model):
     todos = db.relationship('Todo', cascade='all' ,back_populates='project')
     bugs = db.relationship('Bug', cascade='all' ,back_populates='project')
 
-    def __init__(self, name, owner_id):
+    def __init__(self, name, git_url, owner_id):
         self.name = name
+        self.git_url = git_url
         self.owner_id = owner_id
 
     def json(self):
