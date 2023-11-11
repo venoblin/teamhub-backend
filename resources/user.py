@@ -13,4 +13,3 @@ class SingleUser(Resource):
   
   def delete(self, id):
     return verify_auth(request, lambda: delete_single_user(id))
-    
