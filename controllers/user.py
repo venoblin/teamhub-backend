@@ -17,3 +17,6 @@ def get_single_user(id):
   projects = [construct_project(p) for p in user.projects]
 
   return {**user.json(), 'projects': projects}
+
+def delete_single_user(id):
+  return User.delete_by_id(id)
