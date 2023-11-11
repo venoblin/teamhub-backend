@@ -13,11 +13,12 @@ def post_project():
   if ' ' not in data['name']:
     params = {
     'name': data['name'],
+    'git_url': data['git_url'],
     'owner_id': data['owner_id'],
     }
     project = Project(**params)
 
-    if not project.find_from_user_by_name(**params):
+    if not project.find_from_user_by_name(params['name'], params['owner_id']):
       project.create()
       return project.json(), 201
   
