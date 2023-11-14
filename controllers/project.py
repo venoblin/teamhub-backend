@@ -20,7 +20,7 @@ def post_project():
 
     if not project.find_from_user_by_name(params['name'], params['owner_id']):
       project.create()
-      return project.json(), 201
+      return Project.find_by_id()
   
     return 'Name already in use', 500
   else:

@@ -27,6 +27,9 @@ class Project(db.Model):
             'owner_id': self.owner_id
         }
     
+    def get_id(self):
+        return self.id
+    
     def create(self):
         db.session.add(self)
         db.session.commit()
