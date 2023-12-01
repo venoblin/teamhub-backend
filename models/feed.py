@@ -18,3 +18,8 @@ class Feed(db.Model):
       'event': self.event,
       'time': self.created_at
     }
+  
+  def create(self):
+    db.session.add(self)
+    db.session.commit()
+    return self
