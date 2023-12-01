@@ -10,3 +10,11 @@ class Feed(db.Model):
   project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
   project = db.relationship('Project', back_populates='feed')
 
+  def __init__(self, event):
+    self.event = event
+
+  def json(self):
+    return {
+      'event': self.event,
+      'time': self.created_at
+    }
