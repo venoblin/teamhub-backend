@@ -14,3 +14,10 @@ def post_event():
   event = Event(**params)
   event.create()
   return event.json(), 201
+
+def get_single_event(id):
+  event = Event.find_by_id(id)
+  return event.json()
+
+def delete_single_event(id):
+  return Event.delete_by_id(id)
