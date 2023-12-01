@@ -1,14 +1,14 @@
 from models.db import db
 from datetime import datetime
 
-class Feed(db.Model):
-  __tablename__ = 'feed'
+class Event(db.Model):
+  __tablename__ = 'events'
   id = db.Column(db.Integer, primary_key=True, nullable=False)
   event = db.Column(db.String(255), nullable=False)
   created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
   updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
   project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
-  project = db.relationship('Project', back_populates='feed')
+  project = db.relationship('Project', back_populates='events')
 
   def __init__(self, event):
     self.event = event
@@ -23,3 +23,18 @@ class Feed(db.Model):
     db.session.add(self)
     db.session.commit()
     return self
+  
+  @classmethod
+  def find_all(self):
+    return Event.query.all()
+  
+  @classmethod
+  def find_by_id(self, id):
+    return db.get_or_404(self, id, description=f'Event with id: {id} was not found!')
+  
+  @classmethod
+  def delete_by_id(self, id):
+    event = self.find_by_id(id)
+    db.session.delete(event)
+    db.session.commit()
+    return f'Successfully deleted event with id: {id}'

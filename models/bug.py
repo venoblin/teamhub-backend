@@ -41,11 +41,11 @@ class Bug(db.Model):
     
     @classmethod
     def find_by_id(self, id):
-        return db.get_or_404(self, id, description=f'Todo with id: {id} was not found!')
+        return db.get_or_404(self, id, description=f'Bug with id: {id} was not found!')
     
     @classmethod
     def delete_by_id(self, id):
         bug = self.find_by_id(id)
         db.session.delete(bug)
         db.session.commit()
-        return f'Successfully deleted todo with id: {id}'
+        return f'Successfully deleted bug with id: {id}'
