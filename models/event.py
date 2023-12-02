@@ -17,7 +17,7 @@ class Event(db.Model):
   def json(self):
     return {
       'event': self.event,
-      'time': self.created_at
+      'time': str(self.created_at)
     }
   
   def create(self):
