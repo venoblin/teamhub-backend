@@ -32,7 +32,7 @@ def strip_token(req):
     except:
         return None
     
-def verify_auth(req, controller):
+def handle_request(req, controller):
     token = strip_token(req)
     payload = read_token(token)
     
