@@ -9,7 +9,8 @@ def get_all_events():
 def post_event():
   data = request.get_json()
   params = {
-    'event': data['event']
+    'event': data['event'],
+    'project_id': data['project_id']
   }
   event = Event(**params)
   event.create()
