@@ -7,7 +7,7 @@ def get_all_events():
   return results
 
 def post_event():
-  data = request.json()
+  data = request.get_json()
   params = {
     'event': data['event']
   }

@@ -10,8 +10,9 @@ class Event(db.Model):
   project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
   project = db.relationship('Project', back_populates='events')
 
-  def __init__(self, event):
+  def __init__(self, event, project_id):
     self.event = event
+    self.project_id = project_id
 
   def json(self):
     return {
