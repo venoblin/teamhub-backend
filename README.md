@@ -1,3 +1,64 @@
-# project-manager-backend
+<a name="readme-top"></a>
 
-### [Front-End](https://github.com/venoblin/project-manager-frontend)
+[LinkedIn](https://www.linkedin.com/in/jonathanvillagomezhernandez/) |
+[Website](https://www.jonweb.dev/)
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+
+  <h1 align="center">Project Manager</h3>
+
+  <p align="center">
+    Web-application built to help you organize your projects
+    <br />
+    <a href="https://github.com/venoblin/project-manager-frontend"><strong>Back-End</strong></a>
+    <br />
+  </p>
+</div>
+
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+  </ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+
+Project Manager is what its name implies, it allows you to organize your projects and most importantly your workflow. By laying out everything in a single place it will allow you to better keep up with tasks and what's going on with the project in general.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Built With
+
+* React
+* TypeScript
+* SCSS
+* Python
+* Flask
+* PostgreSQL
+* SQLAlchemy
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ROADMAP -->
+## Roadmap
+
+- [ ] Add image support for project information
+- [ ] Add multiple contributers to single project
+- [ ] Add a ticket system to organize multiple contributers
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
