@@ -28,6 +28,7 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
+    <li><a href="#roadmap">Roadmap</a></li>
   </ol>
 </details>
 
