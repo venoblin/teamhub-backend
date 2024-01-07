@@ -1,6 +1,7 @@
 from flask import request
 from sqlalchemy.orm import subqueryload
 from models.project import Project
+from controllers.event import post_event
 
 def get_all_projects():
   data = Project.find_all()
@@ -16,6 +17,10 @@ def post_project():
     'git_url': data['git_url'],
     'owner_id': data['owner_id'],
     }
+    post_event({
+      'event': f'Created "{data['name']}" project',
+      'project_id': data['project_id']
+    })
     project = Project(**params)
 
     if not project.find_from_user_by_name(params['name'], params['owner_id']):

@@ -14,10 +14,6 @@ def post_bug():
     'bug_info': data['bug_info'],
     'project_id': data['project_id']
   }
-  post_event({
-    'event': f'Added "{data['bug']}" bug',
-    'project_id': data['project_id']
-  })
   bug = Bug(**params)
   bug.create()
   return bug.json(), 201
