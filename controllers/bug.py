@@ -1,5 +1,6 @@
 from flask import request
 from models.bug import Bug
+from controllers.event import post_event
 
 def get_all_bugs():
   data = Bug.find_all()
@@ -13,6 +14,10 @@ def post_bug():
     'bug_info': data['bug_info'],
     'project_id': data['project_id']
   }
+  post_event({
+    'event': f'Added "{data['bug']}" bug',
+    'project_id': data['project_id']
+  })
   bug = Bug(**params)
   bug.create()
   return bug.json(), 201
