@@ -23,7 +23,7 @@ def post_project():
       project.create()
       created_project = project.json()
       post_event({
-        'event': f'Created "{data['name']}" project',
+        'event': f'Created project',
         'project_id': created_project['id']
       })
       return get_single_project(created_project['id'])
