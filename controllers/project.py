@@ -17,15 +17,15 @@ def post_project():
     'git_url': data['git_url'],
     'owner_id': data['owner_id'],
     }
-    post_event({
-      'event': f'Created "{data['name']}" project',
-      'project_id': data['project_id']
-    })
     project = Project(**params)
 
     if not project.find_from_user_by_name(params['name'], params['owner_id']):
       project.create()
       created_project = project.json()
+      post_event({
+        'event': f'Created "{data['name']}" project',
+        'project_id': created_project['id']
+      })
       return get_single_project(created_project['id'])
   
     return 'Name already in use', 500
