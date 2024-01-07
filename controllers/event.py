@@ -6,8 +6,12 @@ def get_all_events():
   results = [e.json() for e in data]
   return results
 
-def post_event():
-  data = request.get_json()
+def post_event(event = None):
+  data = None
+  if event is not None:
+    data = event
+  else:
+    data = request.get_json()
   params = {
     'event': data['event'],
     'project_id': data['project_id']
