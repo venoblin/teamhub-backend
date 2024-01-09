@@ -12,7 +12,8 @@ def get_single_user(id):
   def construct_project(project):
     todos = [t.json() for t in project.todos]
     bugs = [b.json() for b in project.bugs]
-    return {**project.json(), 'todos': todos, 'bugs': bugs}
+    events = [e.json() for e in project.events]
+    return {**project.json(), 'todos': todos, 'bugs': bugs, 'events': events}
     
   projects = [construct_project(p) for p in user.projects]
 
