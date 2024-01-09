@@ -7,8 +7,6 @@ class Bug(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     bug = db.Column(db.String(100), nullable=False)
     bug_info = db.Column(db.String(255), nullable=False)
-    completed = db.Column(db.Boolean, default=False)
-    completed_at = db.Column(db.DateTime)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
     project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
@@ -18,15 +16,12 @@ class Bug(db.Model):
         self.bug = bug
         self.bug_info = bug_info
         self.project_id = project_id
-        self.completed = False
 
     def json(self):
         return {
             'id': self.id,
             'bug': self.bug,
             'bug_info': self.bug_info,
-            'completed': self.completed,
-            'completed_at': self.completed_at,
             'project_id': self.project_id
         }
     

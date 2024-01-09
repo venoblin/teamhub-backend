@@ -6,8 +6,6 @@ class Todo(db.Model):
     __tablename__ = 'todos'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     todo = db.Column(db.String(100), nullable=False)
-    completed = db.Column(db.Boolean, default=False)
-    completed_at = db.Column(db.DateTime)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
     project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
@@ -16,14 +14,11 @@ class Todo(db.Model):
     def __init__(self, todo, project_id):
         self.todo = todo
         self.project_id = project_id
-        self.completed = False
 
     def json(self):
         return {
             'id': self.id,
             'todo': self.todo,
-            'completed': self.completed,
-            'completed_at': self.completed_at,
             'project_id': self.project_id
         }
     
