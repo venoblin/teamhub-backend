@@ -1,6 +1,8 @@
 from models.db import db
 from datetime import datetime
 from utils import update_self
+from models.user import User
+from models.project import Project
 
 class Contributor(db.Model):
   __tablename__ = 'contributors'
@@ -22,15 +24,23 @@ class Contributor(db.Model):
       'project_id': self.project_id
     }
   
+  def get_user(self):
+    user = User.find_by_id(self.user_id)
+    return user.json()
+  
+  def get_project(self):
+    project = Project.find_by_id(self.project_id)
+    return project.json()
+  
   def create(self):
     db.session.add(self)
     db.session.commit()
     return self
   
   def update(self, update):
-        update_self(self, update)
-        db.session.commit()
-        return self
+    update_self(self, update)
+    db.session.commit()
+    return self
     
   @classmethod
   def find_all(self):

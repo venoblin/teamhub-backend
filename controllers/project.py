@@ -33,11 +33,11 @@ def post_project():
     return 'Can\'t have spaces in name'
 
 def get_single_project(id):
-  project = Project.query.options(subqueryload(Project.user), subqueryload(Project.todos), subqueryload(Project.bugs), subqueryload(Project.events)).filter_by(id=id).first()
+  project = Project.query.options(subqueryload(Project.user), subqueryload(Project.todos), subqueryload(Project.bugs), subqueryload(Project.events), subqueryload(Project.contributors)).filter_by(id=id).first()
   todos = [t.json() for t in project.todos]
   bugs = [b.json() for b in project.bugs]
   events = [e.json() for e in project.events]
-  contributors = [c.json() for c in project.contributors]
+  contributors = [c.get_user() for c in project.contributors]
   return {
     **project.json(),
     'owner': project.user.json(), 
