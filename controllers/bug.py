@@ -1,6 +1,5 @@
 from flask import request
 from models.bug import Bug
-from controllers.event import post_event
 
 def get_all_bugs():
   data = Bug.find_all()

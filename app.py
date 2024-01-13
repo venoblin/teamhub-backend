@@ -10,6 +10,7 @@ from resources.project import Projects, SingleProject
 from resources.todo import Todos, SingleTodo
 from resources.bug import Bugs, SingleBug
 from resources.event import Events, SingleEvent
+from resources.contributer import Contributers
 
 app = Flask(__name__)
 CORS(app)
@@ -49,6 +50,8 @@ api.add_resource(SingleBug, '/bugs/<int:id>')
 
 api.add_resource(Events, '/events')
 api.add_resource(SingleEvent, '/events/<int:id>')
+
+api.add_resource(Contributers, '/contributers')
 
 if __name__ == '__main__':
     app.run()

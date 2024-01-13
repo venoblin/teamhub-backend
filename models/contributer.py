@@ -9,6 +9,8 @@ class Contributer(db.Model):
   project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
   created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
   updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
+  user = db.relationship('User', back_populates='contributers')
+  project = db.relationship('Project', back_populates='contributers')
 
   def __init__(self, user_id, project_id):
     self.user_id = user_id
@@ -40,8 +42,8 @@ class Contributer(db.Model):
     
   @classmethod
   def delete_by_id(self, id):
-    Contributer = self.find_by_id(id)
-    db.session.delete(Contributer)
+    contributer = self.find_by_id(id)
+    db.session.delete(contributer)
     db.session.commit()
-    return f'Successfully deleted Contributer with id: {id}'
+    return f'Successfully deleted contributer with id: {id}'
 
