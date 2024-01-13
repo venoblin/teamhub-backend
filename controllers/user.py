@@ -24,7 +24,7 @@ def get_single_user(id):
   return {
     **user.json(), 
     'projects': projects,
-    'contributors': contributors
+    'contributions': contributors
   }
 
 def delete_single_user(id):
