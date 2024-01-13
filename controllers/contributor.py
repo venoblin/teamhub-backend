@@ -20,10 +20,10 @@ def get_single_contributor(id):
   contributor = Contributor.find_by_id(id)
   return contributor.json()
 
-def delete_single_bug(id):
+def delete_single_contributor(id):
   return Contributor.delete_by_id(id)
 
-def patch_single_bug(id):
+def patch_single_contributor(id):
   data = request.get_json()
   contributor = Contributor.find_by_id(id).update(data)
   return contributor.json()
