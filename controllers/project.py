@@ -37,12 +37,14 @@ def get_single_project(id):
   todos = [t.json() for t in project.todos]
   bugs = [b.json() for b in project.bugs]
   events = [e.json() for e in project.events]
+  contributors = [c.json() for c in project.contributors]
   return {
     **project.json(),
     'owner': project.user.json(), 
     'todos': todos, 
     'bugs': bugs,
-    'events': events
+    'events': events,
+    'contributors': contributors
   }
 
 def delete_single_project(id):

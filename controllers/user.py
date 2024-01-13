@@ -13,11 +13,19 @@ def get_single_user(id):
     todos = [t.json() for t in project.todos]
     bugs = [b.json() for b in project.bugs]
     events = [e.json() for e in project.events]
-    return {**project.json(), 'todos': todos, 'bugs': bugs, 'events': events}
+    return {
+      **project.json(), 'todos': todos, 
+      'bugs': bugs, 
+      'events': events
+    }
     
   projects = [construct_project(p) for p in user.projects]
-
-  return {**user.json(), 'projects': projects}
+  contributors = [c.json() for c in user.contributors]
+  return {
+    **user.json(), 
+    'projects': projects,
+    'contributors': contributors
+  }
 
 def delete_single_user(id):
   return User.delete_by_id(id)

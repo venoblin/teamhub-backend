@@ -9,8 +9,8 @@ class Contributor(db.Model):
   project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
   created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
   updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
-  user = db.relationship('User', back_populates='contributers')
-  project = db.relationship('Project', back_populates='contributers')
+  user = db.relationship('User', back_populates='contributors')
+  project = db.relationship('Project', back_populates='contributors')
 
   def __init__(self, user_id, project_id):
     self.user_id = user_id
