@@ -2,8 +2,8 @@ from models.db import db
 from datetime import datetime
 from utils import update_self
 
-class Contributer(db.Model):
-  __tablename__ = 'contributers'
+class Contributor(db.Model):
+  __tablename__ = 'contributors'
   id = db.Column(db.Integer, primary_key=True, nullable=False)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
@@ -34,16 +34,16 @@ class Contributer(db.Model):
     
   @classmethod
   def find_all(self):
-    return Contributer.query.all()
+    return Contributor.query.all()
     
   @classmethod
   def find_by_id(self, id):
-    return db.get_or_404(self, id, description=f'Contributer with id: {id} not found!')
+    return db.get_or_404(self, id, description=f'Contributor with id: {id} not found!')
     
   @classmethod
   def delete_by_id(self, id):
-    contributer = self.find_by_id(id)
-    db.session.delete(contributer)
+    contributor = self.find_by_id(id)
+    db.session.delete(contributor)
     db.session.commit()
-    return f'Successfully deleted contributer with id: {id}'
+    return f'Successfully deleted contributor with id: {id}'
 
