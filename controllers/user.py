@@ -1,5 +1,6 @@
 from sqlalchemy.orm import subqueryload
 from models.user import User
+from utils import contains_email
 
 def get_all_users():
   data = User.find_all()
@@ -27,8 +28,12 @@ def get_single_user(id):
     'contributions': contributors
   }
 
-def get_single_user_by_username(username):
-  user = User.find_by_username(username)
+def get_single_user_by_identifier(identifier):
+  if contains_email(identifier):
+    user = User.find_by_email(identifier)
+    return user.json()
+
+  user = User.find_by_username(identifier)
   return user.json()
 
 def delete_single_user(id):
