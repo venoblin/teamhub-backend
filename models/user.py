@@ -51,4 +51,12 @@ class User(db.Model):
     def find_by_email(self, email):
         return db.one_or_404(
             db.select(User).filter_by(email=email), 
-            description=f'User with email: {email} not found')
+            description=f'User with email: {email} not found'
+        )
+    
+    @classmethod
+    def find_by_username(self, username):
+        return db.one_or_404(
+            db.select(User).filter_by(username=username),
+            description=f'User with username: {username} not found'
+        )

@@ -27,5 +27,9 @@ def get_single_user(id):
     'contributions': contributors
   }
 
+def get_single_user_by_username(username):
+  user = User.find_by_username(username)
+  return user.json()
+
 def delete_single_user(id):
   return User.delete_by_id(id)
