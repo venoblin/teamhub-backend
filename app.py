@@ -5,7 +5,7 @@ from flask_migrate import Migrate
 from flask_cors import CORS
 from models.db import db
 from resources.auth import Register, Login, CheckSession
-from resources.user import Users, SingleUser
+from resources.user import Users, SingleUser, SingleUserByIdentifier
 from resources.project import Projects, SingleProject
 from resources.todo import Todos, SingleTodo
 from resources.bug import Bugs, SingleBug
@@ -38,6 +38,7 @@ api.add_resource(CheckSession, '/session')
 
 api.add_resource(Users, '/users')
 api.add_resource(SingleUser, '/users/<int:id>')
+api.add_resource(SingleUserByIdentifier, '/users/<string:identifier>')
 
 api.add_resource(Projects, '/projects')
 api.add_resource(SingleProject, '/projects/<int:id>')
