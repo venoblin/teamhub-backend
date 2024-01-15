@@ -5,6 +5,7 @@ class Notification(db.Model):
   __tablename__ = 'notifications'
   id = db.Column(db.Integer, primary_key=True, nullable=False)
   notification = db.Column(db.String(255), nullable=False)
+  seen = db.Column(db.Boolean, default=False)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
   updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now)
@@ -13,12 +14,14 @@ class Notification(db.Model):
   def __init__(self, notification, user_id):
     self.notification = notification
     self.user_id = user_id
+    self.seen = False
 
   def json(self):
     return {
       'id': self.id,
       'notification': self.notification,
       'time': str(self.created_at),
+      'seen': self.seen,
       'user_id': self.user_id
     }
   
