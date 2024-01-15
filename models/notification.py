@@ -16,8 +16,10 @@ class Notification(db.Model):
 
   def json(self):
     return {
+      'id': self.id,
       'notification': self.notification,
-      'time': self.created_at
+      'time': str(self.created_at),
+      'user_id': self.user_id
     }
   
   def create(self):

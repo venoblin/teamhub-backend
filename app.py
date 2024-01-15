@@ -11,6 +11,7 @@ from resources.todo import Todos, SingleTodo
 from resources.bug import Bugs, SingleBug
 from resources.event import Events, SingleEvent
 from resources.contributor import Contributors, SingleContributor
+from resources.notification import Notifications, SingleNotification
 
 app = Flask(__name__)
 CORS(app)
@@ -54,6 +55,9 @@ api.add_resource(SingleEvent, '/events/<int:id>')
 
 api.add_resource(Contributors, '/contributors')
 api.add_resource(SingleContributor, '/contributors/<int:id>')
+
+api.add_resource(Notifications, '/notifications')
+api.add_resource(SingleNotification, '/notifications/<int:id>')
 
 if __name__ == '__main__':
     app.run()

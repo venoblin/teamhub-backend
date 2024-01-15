@@ -12,6 +12,7 @@ class User(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
     projects = db.relationship('Project', cascade='all', back_populates='user')
     contributors = db.relationship('Contributor', cascade='all', back_populates='user')
+    notifications = db.relationship('Notification', cascade='all', back_populates='user')
 
     def __init__(self, username, name, email, password):
         self.username = username
