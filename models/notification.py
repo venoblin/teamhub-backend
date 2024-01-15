@@ -19,3 +19,23 @@ class Notification(db.Model):
       'notification': self.notification,
       'time': self.created_at
     }
+  
+  def create(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
+    
+  @classmethod
+  def find_all(self):
+      return Notification.query.all()
+  
+  @classmethod
+  def find_by_id(self, id):
+      return db.get_or_404(self, id, description=f'Notification with id: {id} not found!')
+  
+  @classmethod
+  def delete_by_id(self, id):
+      notification = self.find_by_id(id)
+      db.session.delete(notification)
+      db.session.commit()
+      return f'Successfully deleted notification with id: {id}'
