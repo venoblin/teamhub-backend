@@ -8,7 +8,7 @@ def get_all_users():
   return results
 
 def get_single_user(id):
-  user = User.query.options(subqueryload(User.projects), subqueryload(User.contributors)).filter_by(id=id).first()
+  user = User.query.options(subqueryload(User.projects), subqueryload(User.contributors), subqueryload(User.notifications)).filter_by(id=id).first()
 
   def construct_project(project):
     todos = [t.json() for t in project.todos]
@@ -22,10 +22,12 @@ def get_single_user(id):
     
   projects = [construct_project(p) for p in user.projects]
   contributors = [c.get_project() for c in user.contributors]
+  notifications = [n.json() for n in user.notifications]
   return {
     **user.json(), 
     'projects': projects,
-    'contributions': contributors
+    'contributions': contributors,
+    'notifications': notifications
   }
 
 def get_single_user_by_identifier(identifier):
