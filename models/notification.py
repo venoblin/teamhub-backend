@@ -5,14 +5,16 @@ class Notification(db.Model):
   __tablename__ = 'notifications'
   id = db.Column(db.Integer, primary_key=True, nullable=False)
   notification = db.Column(db.String(255), nullable=False)
+  type = db.Column(db.String(80), nullable=False)
   seen = db.Column(db.Boolean, default=False)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
   updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now)
   user = db.relationship('User', back_populates='notifications')
 
-  def __init__(self, notification, user_id):
+  def __init__(self, notification, type, user_id):
     self.notification = notification
+    self.type = type
     self.user_id = user_id
     self.seen = False
 
@@ -20,8 +22,9 @@ class Notification(db.Model):
     return {
       'id': self.id,
       'notification': self.notification,
-      'time': str(self.created_at),
+      'type': self.type,
       'seen': self.seen,
+      'time': str(self.created_at),
       'user_id': self.user_id
     }
   

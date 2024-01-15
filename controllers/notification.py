@@ -11,6 +11,7 @@ def post_notification():
 
   params = {
     'notification': data['notification'],
+    'type': data['type'],
     'user_id': data['user_id']
   }
   notification = Notification(**params)
