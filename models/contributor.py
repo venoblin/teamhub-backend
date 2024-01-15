@@ -20,6 +20,7 @@ class Contributor(db.Model):
 
   def json(self):
     return {
+      'id': self.id,
       'user_id': self.user_id,
       'project_id': self.project_id
     }
