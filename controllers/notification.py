@@ -24,3 +24,8 @@ def get_single_notification(id):
 
 def delete_single_notification(id):
   return Notification.delete_by_id(id)
+
+def patch_single_notification(id):
+  data = request.get_json()
+  notification = Notification.find_by_id(id).update(data)
+  return notification.json()
