@@ -1,5 +1,6 @@
 from models.db import db
 from datetime import datetime
+from utils import update_self
 
 class Notification(db.Model):
   __tablename__ = 'notifications'
@@ -29,21 +30,26 @@ class Notification(db.Model):
     }
   
   def create(self):
-        db.session.add(self)
-        db.session.commit()
-        return self
+    db.session.add(self)
+    db.session.commit()
+    return self
+  
+  def update(self, update):
+    update_self(self, update)
+    db.session.commit()
+    return self
     
   @classmethod
   def find_all(self):
-      return Notification.query.all()
+    return Notification.query.all()
   
   @classmethod
   def find_by_id(self, id):
-      return db.get_or_404(self, id, description=f'Notification with id: {id} not found!')
+    return db.get_or_404(self, id, description=f'Notification with id: {id} not found!')
   
   @classmethod
   def delete_by_id(self, id):
-      notification = self.find_by_id(id)
-      db.session.delete(notification)
-      db.session.commit()
-      return f'Successfully deleted notification with id: {id}'
+    notification = self.find_by_id(id)
+    db.session.delete(notification)
+    db.session.commit()
+    return f'Successfully deleted notification with id: {id}'
