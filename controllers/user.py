@@ -9,7 +9,10 @@ def get_all_users():
   return results
 
 def get_single_user(id):
-  user = User.query.options(joinedload(User.projects), joinedload(User.contributors), joinedload(User.notifications).order_by(Notification.created_at.asc())).filter_by(id=id).first()
+  user = User.query.options(
+    joinedload(User.projects), 
+    joinedload(User.contributors), 
+    joinedload(User.notifications)).filter_by(id=id).first()
 
   def construct_project(project):
     todos = [t.json() for t in project.todos]
