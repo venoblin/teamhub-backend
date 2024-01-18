@@ -1,6 +1,8 @@
 from models.db import db
 from datetime import datetime 
 from utils import update_self
+from models.event import Event
+from sqlalchemy import desc
 
 class Project(db.Model):
     __tablename__ = 'projects'
@@ -13,7 +15,7 @@ class Project(db.Model):
     user = db.relationship('User', back_populates='projects')
     todos = db.relationship('Todo', cascade='all', back_populates='project')
     bugs = db.relationship('Bug', cascade='all', back_populates='project')
-    events = db.relationship('Event', cascade='all', back_populates='project')
+    events = db.relationship('Event', cascade='all', back_populates='project', order_by=desc(Event.created_at))
     contributors = db.relationship('Contributor', cascade='all', back_populates='project')
 
     def __init__(self, name, git_url, owner_id):
