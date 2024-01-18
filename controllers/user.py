@@ -1,5 +1,6 @@
-from sqlalchemy.orm import subqueryload
+from sqlalchemy.orm import joinedload
 from models.user import User
+from models.notification import Notification
 from utils import contains_email
 
 def get_all_users():
@@ -8,7 +9,7 @@ def get_all_users():
   return results
 
 def get_single_user(id):
-  user = User.query.options(subqueryload(User.projects), subqueryload(User.contributors), subqueryload(User.notifications)).filter_by(id=id).first()
+  user = User.query.options(joinedload(User.projects), joinedload(User.contributors), joinedload(User.notifications).order_by(Notification.created_at.asc())).filter_by(id=id).first()
 
   def construct_project(project):
     todos = [t.json() for t in project.todos]
