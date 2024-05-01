@@ -5,7 +5,8 @@ from controllers.user import get_all_users, get_single_user, delete_single_user,
 
 class Users(Resource):
   def get(self):
-    return handle_request(request, get_all_users)
+    return get_all_users()
+    # return handle_request(request, get_all_users)
 
 class SingleUser(Resource):
   def get(self, id):
