@@ -38,6 +38,25 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+<p align="center">
+  <img src="project-info/screenshot01.png" width="650" />
+</p>
+
+<p align="center">
+  <img src="project-info/screenshot02.png" width="650" />
+</p>
+
+<p align="center">
+  <img src="project-info/screenshot03.png" width="650" />
+</p>
+
+<p align="center">
+  <img src="project-info/screenshot04.png" width="650" />
+</p>
+
+<p align="center">
+  <img src="project-info/screenshot05.png" width="650" />
+</p>
 
 Project Manager is what its name implies, it allows you to organize your projects and most importantly your workflow. By laying out everything in a single place it will allow you to better keep up with tasks and what's going on with the project in general.
 
