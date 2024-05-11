@@ -18,10 +18,13 @@ def get_single_user(id):
     todos = [t.json() for t in project.todos]
     bugs = [b.json() for b in project.bugs]
     events = [e.json() for e in project.events]
+    contributors = [c.json() for c in project.contributors]
     return {
-      **project.json(), 'todos': todos, 
+      **project.json(), 
+      'todos': todos, 
       'bugs': bugs, 
-      'events': events
+      'events': events,
+      'contributors': contributors
     }
     
   projects = [construct_project(p) for p in user.projects]
