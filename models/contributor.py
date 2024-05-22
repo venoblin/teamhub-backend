@@ -9,8 +9,8 @@ class Contributor(db.Model):
   id = db.Column(db.Integer, primary_key=True, nullable=False)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
-  created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
-  updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
+  created_at = db.Column(db.DateTime, default=datetime.now(datetime.UTC), nullable=False)
+  updated_at = db.Column(db.DateTime, default=datetime.now(datetime.UTC), nullable=False, onupdate=datetime.now())
   user = db.relationship('User', back_populates='contributors')
   project = db.relationship('Project', back_populates='contributors')
 

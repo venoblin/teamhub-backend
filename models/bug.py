@@ -8,8 +8,8 @@ class Bug(db.Model):
     bug = db.Column(db.String(100), nullable=False)
     bug_info = db.Column(db.String(255), nullable=False)
     completed = db.Column(db.Boolean, default=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
+    created_at = db.Column(db.DateTime, default=datetime.now(datetime.UTC), nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.now(datetime.UTC), nullable=False, onupdate=datetime.now())
     project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
     project = db.relationship('Project', back_populates='bugs')
 

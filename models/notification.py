@@ -9,8 +9,8 @@ class Notification(db.Model):
   type = db.Column(db.String(80), nullable=False)
   seen = db.Column(db.Boolean, default=False)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-  created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
-  updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now)
+  created_at = db.Column(db.DateTime, default=datetime.now(datetime.UTC), nullable=False)
+  updated_at = db.Column(db.DateTime, default=datetime.now(datetime.UTC), nullable=False, onupdate=datetime.now)
   user = db.relationship('User', back_populates='notifications')
 
   def __init__(self, notification, type, user_id):
