@@ -1,5 +1,5 @@
 from models.db import db
-from datetime import datetime
+from datetime import datetime, timezone
 from utils import update_self
 
 class Bug(db.Model):
@@ -8,8 +8,8 @@ class Bug(db.Model):
     bug = db.Column(db.String(100), nullable=False)
     bug_info = db.Column(db.String(255), nullable=False)
     completed = db.Column(db.Boolean, default=False)
-    created_at = db.Column(db.DateTime, default=datetime.now(datetime.UTC), nullable=False)
-    updated_at = db.Column(db.DateTime, default=datetime.now(datetime.UTC), nullable=False, onupdate=datetime.now())
+    created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), nullable=False, onupdate=datetime.now())
     project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
     project = db.relationship('Project', back_populates='bugs')
 

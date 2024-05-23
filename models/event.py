@@ -1,12 +1,12 @@
 from models.db import db
-from datetime import datetime
+from datetime import datetime, timezone
 
 class Event(db.Model):
   __tablename__ = 'events'
   id = db.Column(db.Integer, primary_key=True, nullable=False)
   event = db.Column(db.String(255), nullable=False)
-  created_at = db.Column(db.DateTime, default=datetime.now(datetime.UTC), nullable=False)
-  updated_at = db.Column(db.DateTime, default=datetime.now(datetime.UTC), nullable=False, onupdate=datetime.now())
+  created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), nullable=False)
+  updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), nullable=False, onupdate=datetime.now())
   project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
   project = db.relationship('Project', back_populates='events')
 
