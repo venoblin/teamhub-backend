@@ -17,6 +17,7 @@ class Project(db.Model):
     bugs = db.relationship('Bug', cascade='all', back_populates='project')
     events = db.relationship('Event', cascade='all', back_populates='project', order_by=desc(Event.created_at))
     contributors = db.relationship('Contributor', cascade='all', back_populates='project')
+    notifications = db.relationship('Notification', cascade='all', back_populates='project')
 
     def __init__(self, name, git_url, owner_id):
         self.name = name

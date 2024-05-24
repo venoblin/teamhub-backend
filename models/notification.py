@@ -9,7 +9,7 @@ class Notification(db.Model):
   type = db.Column(db.String(80), nullable=False)
   seen = db.Column(db.Boolean, default=False)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-  project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
+  project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=True)
   created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), nullable=False)
   updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), nullable=False, onupdate=datetime.now)
   project = db.relationship('Project', back_populates='notifications')
@@ -33,7 +33,8 @@ class Notification(db.Model):
       'type': self.type,
       'seen': self.seen,
       'time': str(self.created_at),
-      'user_id': self.user_id
+      'user_id': self.user_id,
+      'project_id': self.project_id
     }
   
   def create(self):
