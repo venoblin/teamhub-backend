@@ -9,16 +9,19 @@ class Notification(db.Model):
   type = db.Column(db.String(80), nullable=False)
   seen = db.Column(db.Boolean, default=False)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+  sender_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=True)
   created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), nullable=False)
   updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), nullable=False, onupdate=datetime.now)
   project = db.relationship('Project', back_populates='notifications')
-  user = db.relationship('User', back_populates='notifications')
+  user = db.relationship('User', back_populates='notifications', foreign_keys=[user_id])
+  sender = db.relationship('User', back_populates='notifications', foreign_keys=[sender_id])
 
-  def __init__(self, notification, type, user_id, project_id):
+  def __init__(self, notification, type, user_id, sender_id, project_id):
     self.notification = notification
     self.type = type
     self.user_id = user_id
+    self.sender_id = sender_id
     self.seen = False
 
     if project_id:
@@ -34,6 +37,7 @@ class Notification(db.Model):
       'seen': self.seen,
       'time': str(self.created_at),
       'user_id': self.user_id,
+      'sender_id': self.sender_id,
       'project_id': self.project_id
     }
   

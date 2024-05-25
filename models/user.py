@@ -14,7 +14,8 @@ class User(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), nullable=False, onupdate=datetime.now())
     projects = db.relationship('Project', cascade='all', back_populates='user')
     contributors = db.relationship('Contributor', cascade='all', back_populates='user')
-    notifications = db.relationship('Notification', cascade='all', back_populates='user', order_by=desc(Notification.created_at))
+    notifications = db.relationship('Notification', cascade='all', back_populates='user', order_by=desc(Notification.created_at), foreign_keys=[Notification.user_id])
+    sent_notifications = db.relationship('Notification', cascade='all', back_populates='user', order_by=desc(Notification.created_at), foreign_keys=[Notification.sender_id])
 
     def __init__(self, username, name, email, password):
         self.username = username
