@@ -26,10 +26,17 @@ def get_single_user(id):
       'events': events,
       'contributors': contributors
     }
+  
+  def construct_notification(notification):
+    return {
+      **notification.json(),
+      'sender': notification.sender.json(),
+      'project': notification.project.json()
+    }
     
   projects = [construct_project(p) for p in user.projects]
   contributors = [c.get_project() for c in user.contributors]
-  notifications = [n.json() for n in user.notifications]
+  notifications = [construct_notification(n) for n in user.notifications]
   return {
     **user.json(), 
     'projects': projects,
