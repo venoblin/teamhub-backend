@@ -36,5 +36,12 @@ def delete_single_notification(id):
 
 def patch_single_notification(id):
   data = request.get_json()
-  notification = Notification.find_by_id(id).update(data)
-  return notification.json()
+  # notification = Notification.find_by_id(id).update(data)
+  notification = Notification.query.options(
+    joinedload(Notification.sender), 
+    joinedload(Notification.project)).filter_by(id=id).first().update(data)
+  return {
+    **notification.json(),
+    'sender': notification.sender.json(),
+    'project': notification.project.json()
+  }
