@@ -20,7 +20,8 @@ def get_single_user(id):
     events = [e.json() for e in project.events]
     contributors = [c.json() for c in project.contributors]
     return {
-      **project.json(), 
+      **project.json(),
+      'owner': project.user.json(), 
       'todos': todos, 
       'bugs': bugs, 
       'events': events,
