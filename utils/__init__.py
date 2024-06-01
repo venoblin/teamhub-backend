@@ -9,7 +9,7 @@ def construct_project(project):
   todos = [t.json() for t in project.todos]
   bugs = [b.json() for b in project.bugs]
   events = [e.json() for e in project.events]
-  contributors = [c.json() for c in project.contributors]
+  contributors = [c.get_user() for c in project.contributors]
   return {
     **project.json(),
     'owner': project.user.json(), 
