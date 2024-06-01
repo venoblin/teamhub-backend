@@ -16,7 +16,7 @@ def post_contributor():
   }
   contributor = Contributor(**params)
   contributor.create()
-  return contributor.json(), 201
+  return get_single_contributor(contributor.id), 201
 
 def get_single_contributor(id):
   contributor = Contributor.query.options(
