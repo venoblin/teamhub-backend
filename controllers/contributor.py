@@ -1,5 +1,7 @@
 from flask import request
+from sqlalchemy.orm import joinedload
 from models.contributor import Contributor
+from utils import construct_project
 
 def get_all_contributors():
   data = Contributor.find_all()
@@ -17,8 +19,14 @@ def post_contributor():
   return contributor.json(), 201
 
 def get_single_contributor(id):
-  contributor = Contributor.find_by_id(id)
-  return contributor.json()
+  contributor = Contributor.query.options(
+    joinedload(Contributor.user), 
+    joinedload(Contributor.project)).filter_by(id=id).first()
+  return {
+    **contributor.json(),
+    'user': contributor.user.json(),
+    'project': construct_project(contributor.project)
+  }
 
 def delete_single_contributor(id):
   return Contributor.delete_by_id(id)
