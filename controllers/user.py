@@ -14,7 +14,7 @@ def get_single_user(id):
     joinedload(User.notifications)).filter_by(id=id).first()
   
   projects = [construct_project(p) for p in user.projects]
-  contributors = [construct_project(c.project) for c in user.contributors]
+  contributors = [{'contribution_id': c.id, **construct_project(c.project)} for c in user.contributors]
   notifications = [construct_notification(n) for n in user.notifications]
   return {
     **user.json(), 
