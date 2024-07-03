@@ -9,7 +9,7 @@ class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(80), nullable=False)
     git_url = db.Column(db.String(255), nullable=False)
-    is_private = db.Column(db.Boolean, default=False, nullable=False)
+    is_private = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), nullable=False, onupdate=datetime.now())
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
