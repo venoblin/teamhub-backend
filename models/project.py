@@ -9,6 +9,7 @@ class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(80), nullable=False)
     git_url = db.Column(db.String(255), nullable=False)
+    is_private = db.Column(db.Boolean, default=False, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), nullable=False, onupdate=datetime.now())
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
@@ -19,9 +20,10 @@ class Project(db.Model):
     contributors = db.relationship('Contributor', cascade='all', back_populates='project')
     notifications = db.relationship('Notification', cascade='all', back_populates='project')
 
-    def __init__(self, name, git_url, owner_id):
+    def __init__(self, name, git_url, is_private, owner_id):
         self.name = name
         self.git_url = git_url
+        self.is_private = is_private
         self.owner_id = owner_id
 
     def json(self):
@@ -29,6 +31,7 @@ class Project(db.Model):
             'id': self.id,
             'name': self.name,
             'git_url': self.git_url,
+            'is_private': self.is_private,
             'owner_id': self.owner_id
         }
     
