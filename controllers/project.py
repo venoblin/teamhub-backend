@@ -15,7 +15,7 @@ def post_project():
     params = {
     'name': data['name'],
     'git_url': data['git_url'],
-    'is_priave': data['is_private'],
+    'is_private': data['is_private'],
     'owner_id': data['owner_id'],
     }
     project = Project(**params)
