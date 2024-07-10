@@ -3,15 +3,13 @@ from sqlalchemy.orm import subqueryload
 from models.project import Project
 from controllers.event import post_event
 
-def get_all_projects(is_guest = True):
+def get_all_projects():
   data = Project.find_all()
-
-  if is_guest:
-    results = [get_single_project(p.json()['id']) for p in data]
-    return results
-  
   results = [p.json() for p in data]
   return results
+
+def get_all_public_projects():
+  pass
 
 def post_project():
   data = request.get_json()
