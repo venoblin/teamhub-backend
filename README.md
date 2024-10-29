@@ -7,7 +7,7 @@
 <br />
 <div align="center">
 
-  <h1 align="center">Project Manager</h3>
+  <h1 align="center">TeamHub</h3>
 
   <p align="center">
     Web-application built to help you organize your projects
@@ -58,7 +58,7 @@
   <img src="project-info/screenshot05.png" width="650" />
 </p>
 
-Project Manager is what its name implies, it allows you to organize your projects and most importantly your workflow. By laying out everything in a single place it will allow you to better keep up with tasks and what's going on with the project in general.
+TeamHub is a web application that allows you to organize your projects and most importantly your workflow. By laying out everything in a single place it will allow you to better keep up with tasks and what's going on with the project in general.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
