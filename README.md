@@ -1,85 +1,53 @@
-<a name="readme-top"></a>
-
-[LinkedIn](https://www.linkedin.com/in/jonathanvillagomezhernandez/) |
-[Website](https://www.jonweb.dev/)
-
-<!-- PROJECT LOGO -->
-<br />
+<br/>
 <div align="center">
-
-  <h1 align="center">TeamHub</h3>
-
-  <p align="center">
-    Web-application built to help you organize your projects
-    <br />
-    <a href="https://projectmanagerweb.netlify.app/">
-    <strong>View Demo</strong></a> | <a href="https://github.com/venoblin/project-manager-frontend"><strong>Front-End</strong></a>
-    <br />
-  </p>
+<a href="https://github.com/user/repo">
+<img src=".project-images/project-logo.png" alt="Logo" height="128px">
+</a>
+<h3 align="center">TeamHub</h3>
+<p align="center">
+ Web-application built to help you organize your projects !
+<br/>
+<br/>
+<a href="https://projectmanagerweb.netlify.app/">View Demo</a> .  
+<a href="https://github.com/venoblin/project-manager-frontend">Front-End</a>  
+</p>
 </div>
 
+Table of Contents
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li><a href="#roadmap">Roadmap</a></li>
-  </ol>
-</details>
+- [About The Project](#about-the-project)
+  - [Built With](#built-with)
 
-
-
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
 <p align="center">
-  <img src="project-info/screenshot01.png" width="650" />
+  <img src=".project-images/screenshot01.png" width="650" />
 </p>
 
 <p align="center">
-  <img src="project-info/screenshot02.png" width="650" />
+  <img src=".project-images/screenshot02.png" width="650" />
 </p>
 
 <p align="center">
-  <img src="project-info/screenshot03.png" width="650" />
+  <img src=".project-images/screenshot03.png" width="650" />
 </p>
 
 <p align="center">
-  <img src="project-info/screenshot04.png" width="650" />
+  <img src=".project-images/screenshot04.png" width="650" />
 </p>
 
 <p align="center">
-  <img src="project-info/screenshot05.png" width="650" />
+  <img src=".project-images/screenshot05.png" width="650" />
 </p>
 
 TeamHub is a web application that allows you to organize your projects and most importantly your workflow. By laying out everything in a single place it will allow you to better keep up with tasks and what's going on with the project in general.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ### Built With
 
-* React
-* TypeScript
-* SCSS
-* Python
-* Flask
-* PostgreSQL
-* SQLAlchemy
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [ ] Add image support for project information
-- [ ] Add multiple contributers to single project
-- [ ] Add a ticket system to organize multiple contributers
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+This project was built with the following technologies:
+- <img src="https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB" alt="React" />
+- <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff" alt="TypeScript" />
+- <img src="https://img.shields.io/badge/Sass-C69?logo=sass&logoColor=fff" alt="SASS" />
+- <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff" alt="Python" />
+- <img src="https://img.shields.io/badge/Flask-000?logo=flask&logoColor=fff" alt="Flask" />
+- <img src="https://img.shields.io/badge/Postgres-%23316192.svg?logo=postgresql&logoColor=white" alt="PostgreSQL" />
