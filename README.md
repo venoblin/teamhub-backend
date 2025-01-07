@@ -21,23 +21,23 @@ Table of Contents
 ## About The Project
 
 <p align="center">
-  <img src=".project-images/screenshot01.png" width="650" />
+  <img src=".project-images/screenshot01.png" alt="TeamHub screenshot" width="650" />
 </p>
 
 <p align="center">
-  <img src=".project-images/screenshot02.png" width="650" />
+  <img src=".project-images/screenshot02.png" alt="TeamHub screenshot" width="650" />
 </p>
 
 <p align="center">
-  <img src=".project-images/screenshot03.png" width="650" />
+  <img src=".project-images/screenshot03.png" alt="TeamHub screenshot" width="650" />
 </p>
 
 <p align="center">
-  <img src=".project-images/screenshot04.png" width="650" />
+  <img src=".project-images/screenshot04.png" alt="TeamHub screenshot" width="650" />
 </p>
 
 <p align="center">
-  <img src=".project-images/screenshot05.png" width="650" />
+  <img src=".project-images/screenshot05.png" alt="TeamHub screenshot" width="650" />
 </p>
 
 TeamHub is a web application that allows you to organize your projects and most importantly your workflow. By laying out everything in a single place it will allow you to better keep up with tasks and what's going on with the project in general.
