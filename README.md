@@ -19,7 +19,6 @@ Table of Contents
   - [Built With](#built-with)
 
 ## About The Project
-
 <p align="center">
   <img src=".project-images/screenshot01.png" alt="TeamHub screenshot" width="650" />
 </p>
@@ -43,7 +42,6 @@ Table of Contents
 TeamHub is a web application that allows you to organize your projects and most importantly your workflow. By laying out everything in a single place it will allow you to better keep up with tasks and what's going on with the project in general.
 
 ### Built With
-
 This project was built with the following technologies:
 - <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff" alt="Python" />
 - <img src="https://img.shields.io/badge/Flask-000?logo=flask&logoColor=fff" alt="Flask" />
